@@ -1,0 +1,296 @@
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* BASE STYLING ALREADY DONE FOR YOU  */
+html{
+    font-size: 125%;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+}
+header{
+    background-image: url(../assets/larm-rmah-273854-unsplash.jpg);
+    background-size: cover;
+    min-height: 100vh;
+    padding-bottom: 70px;
+}
+img{ 
+    width: 100%;
+}
+h1, h2{
+    text-align: center;
+    margin: 0;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}
+h1{
+    font-size: 2.5rem;
+    width: 80%;
+    margin: 0px auto;
+    padding: 70px 0px;
+}
+
+.feedbackForm{
+    background: #efefef;
+    padding: 40px;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+button {
+    background-color: #ED6B55;
+    color: #202020;
+    border: none; 
+    padding: 20px;
+    width: 200px;
+    margin: 40px auto 0;
+    display: block;
+    text-align: center;
+    color: inherit; 
+    text-decoration: none;
+}
+
+.tabs label{
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    padding: 15px 25px;
+    color: #afafaf;
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+/* WRITE YOUR CSS HERE */
+
+
+/* Colors 
+
+Dark Green - #1f2d2e
+Light Green - #234534
+Orange - #ED6B55
+ */
+
+
+/* Let's style the individual labels (so our words, not our actual toggle switches */
+.toggleLabel{
+    position: relative;
+    line-height: 40px;
+    /* before applying padding, see next step */
+    padding-right: 100px;
+    margin: 15px 0;
+}
+
+
+/* Next, let's get to styling our checkboxes. Right now they're the default, browser styles. I think we can make them a bit better. */
+
+
+/* Let's visually hide the original checkboxes, but KEEP them on the page so that AT still have access to them */
+
+[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+
+/* Now let's create and style our toggle switches! We can use :before and :after to make this happen! */
+
+/* First, let's do the trough in which our switch will live */
+
+.toggleLabel::before{
+    content: "";
+    width: 80px;
+    height: 40px;
+    background-color: #1f2d2e;
+    position: absolute;
+    right: 0;
+    border-radius: 100px;
+}
+/* Hmmm, maybe we should head back to our .toggleLabel and add some padding to the right side so our switches have more space to live? */
+
+/* Let's now style the switch itself */
+
+.toggleLabel::after{
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: 5px;
+    right: 45px;
+}
+
+/* Next, let's move our switch when it's clicked */
+[type="checkbox"]:checked + .toggleLabel::after {
+    right: 5px;
+}
+
+/* Change the background colour when the switch is in a focused state */
+
+[type="checkbox"]:active + .toggleLabel::before,
+[type="checkbox"]:focus + .toggleLabel::before {
+    background: #EB6856;
+}
+
+/* That's it for our header and form, now let's move on to our content */
+
+/* ------- CONTENT AREA --------- */
+
+/* Radio Buttons Area */
+.tabs {
+    background: #234535;
+}
+
+.tabs .content {
+    background: white;
+}
+.tabs label {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    /* The pos-rel is for the orange indicator arrows!  */
+}
+
+/* Let's HIDE all the content by default. Remember, we only want the content to show up if one of the radio buttons has been checked. We can use the Direct Child Selector for this! */
+
+.content > div {
+    display: none;
+    padding: 20px;
+}
+
+/* Now, let's have the selected content show up when the radio button is checked! Ooo, let's use a FOLLOWING selector in here! */
+
+#spider-tab:checked ~ .content .firstPlant,
+#snake-tab:checked ~ .content .secondPlant,
+#philo-tab:checked ~ .content .thirdPlant {
+    display: block;
+}
+
+/* Let's hide the checkboxes/radio buttons visually, while leaving them on the page so AT can access them */
+
+.tabs input[type="radio"]{
+    opacity: 0;
+    position: absolute;
+}
+
+/* Seeing as we're gonna hide the radio buttons, let's create a different visual cue for sighted users so they know that these are clickable elements */
+
+.tabs label:hover{
+    color: white;
+    cursor: pointer;
+}
+.tabs input:checked + label {
+    color: white;
+}
+.tabs input:focus + label {
+    text-decoration: underline;
+}
+
+/* The Indicator Arrows */
+.tabs label .fa-angle-double-down {
+    display: none;
+    position: absolute;
+    color:#EB6856;
+    right: 50px;
+    top: 20px;
+}
+
+.tabs input:checked + label .fa-angle-double-down {
+    display: block;
+}
+
+
+/* -------- MEDIA QUERIES ----------- */
+
+/* You knew they were coming! Let's use our media queries to manipulate the css as the site grows larger in width */
+
+@media (min-width: 480px){
+    .feedbackForm {
+        width: 75%;
+    }
+    /* Let's bring the plant names back in line */
+    .tabs label{
+        display: inline-block;
+    }
+    /* Now we need to move the orange indicator arrows */
+    .tabs label .fa-angle-double-down{
+        right: 0px;
+    }
+
+    /* Let's add some more padding to our content */
+    .content > div {
+        padding: 25px 50px;
+    }
+
+}
+
+@media (min-width: 768px){
+    .feedbackForm {
+        width: 65%;
+    }
+
+    /* Use .plantContent first to show how it won't work because of specificity, then revert to this one */
+    #spider-tab:checked ~ .content .firstPlant,
+    #snake-tab:checked ~ .content .secondPlant,
+    #philo-tab:checked ~ .content .thirdPlant {
+        display: flex;
+    }
+    .imgContainer{
+        width: 50%;
+        margin-right: 25px;
+    }
+    .plantDescription{
+        width: 50%;
+    }
+    .plantDescription p {
+        margin: 0;
+    }
+
+}
+
+@media (min-width: 940px){
+    .feedbackForm{
+        width: 55%;
+    }
+}
+
+/* 
+/* Feature Branch Photo Gallery */
+/* .photoGallery{
+    background: #234535;
+}
+
+.photoGallery h2{
+    font-size: 40px;
+    padding: 20px 0;
+}
+
+.photoGalleryContainer{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.photoGalleryItem{
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photoGalleryItem img{
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+} */
